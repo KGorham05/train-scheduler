@@ -9,6 +9,9 @@
     <!-- Linking Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Linking Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <!-- Linking my own CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- Adding jQuery -->
@@ -21,13 +24,80 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-        <!-- Adding Firebase -->
-        <script src="https://www.gstatic.com/firebasejs/5.8.5/firebase.js"></script>
+    <!-- Adding Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.8.5/firebase.js"></script>
+    <!-- Adding Moment.js -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/ca.js"></script> -->
+
 </head>
-<h1>Whaddup World!</h1>
+
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="text-center">How do trains eat? They chew chew!</h1>
+    </div>
+    <div class="card" id="train-table-card">
+        <div class="card-header">
+            Current Train Schedule
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Train Name</th>
+                    <th scope="col">Destination</th>
+                    <th scope="col">Frequency (min)</th>
+                    <th scope="col">Next Arrival</th>
+                    <th scope="col">Minutes Away</th>
+                </tr>
+            </thead>
+            <tbody id="train-list">
+                <!-- <tr>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr> -->
+            </tbody>
+        </table>
+    </div>
+    <div class="card" id="add-train-card">
+        <div class="card-header">
+            Add Train
+        </div>
+
+        <div class="container">
+            <form>
+                <!-- Train Name -->
+                <div class="form-group">
+                    <label for="train-name">Train Name</label>
+                    <textarea class="form-control" id="train-name-input" rows="1"></textarea>
+                </div>
+                <!-- Destination -->
+                <div class="form-group">
+                    <label for="destination-input">Destination</label>
+                    <textarea class="form-control" id="destination-input" rows="1"></textarea>
+                </div>
+                <!-- First Train Time (HH:mm - military time) -->
+                <div class="form-group">
+                    <label for="first-train-time-input">First Train Time (HH:mm - military time)</label>
+                    <textarea class="form-control" id="first-train-time-input" rows="1"></textarea>
+                </div>
+                <!-- Frequency (min) -->
+                <div class="form-group">
+                    <label for="frequency-input">Frequency (min)</label>
+                    <textarea class="form-control" id="frequency-input" rows="1"></textarea>
+                </div>
+                <!-- Submit button -->
+                <button type="button" id="add-train-btn" class="btn btn-primary"><i class="fas fa-train"></i> Submit</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
 
 
 <script src="assets/js/app.js"></script>
+
 <body>
 
 </body>

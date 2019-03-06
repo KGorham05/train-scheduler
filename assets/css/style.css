@@ -1,3 +1,7 @@
 body {
     background-color: skyblue;
 }
+
+#train-table-card {
+    margin-bottom: 32px;
+}
