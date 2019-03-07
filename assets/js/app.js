@@ -23,10 +23,32 @@ function displayTrainInfo(snapshot) {
     var tdFrequency = $("<td>");
     tdFrequency.text(snapshot.val().freq);
     // these variables need moment.js
+    // -------- MOMENT.JS -------- //
+    // AHHHHH!!!!! //
+
+    var trainFrequency = snapshot.val().freq;
+    console.log("val().freq =" + snapshot.val().freq)
+    var ftt = snapshot.val().ftt;
+    console.log("ftt =" + ftt)
+    var timeFormat = "HH:mm"
+    var fttConverted = moment(ftt, timeFormat);
+    console.log("fttConverted =" + fttConverted);
+    var currentTime = moment();
+    console.log("current time =" +currentTime);
+    var diffTime = currentTime.diff(moment(fttConverted));
+    console.log("diffTime = " + diffTime)
+    var tRemainder = diffTime % trainFrequency;
+    console.log("tRemainder =" + tRemainder)
+    var tMinutesTillTrain = trainFrequency - tRemainder;
+    console.log("tMinutesTillTrain =" + tMinutesTillTrain)
+    var nextTrain = currentTime.add(tMinutesTillTrain, "minutes");
+    console.log("nextTrain =" + nextTrain)
     var tdNextArrival = $("<td>");
-    tdNextArrival.text("next-arrival-place-holder-text");
+    tdNextArrival.text(nextTrain.format("HH:mm a"));
     var tdMinAway = $("<td>");
-    tdMinAway.text("min-away-place-holder-text");
+    tdMinAway.text(tMinutesTillTrain);
+    
+
     tr.append(tdTrain);
     tr.append(tdDestination);
     tr.append(tdFrequency);
@@ -60,7 +82,6 @@ $(document).on("click", "#add-train-btn", function () {
         (fttObject && fttObject.value) &&
         (freqObject && freqObject.value)
     ) {
-        alert("Huston we have all values")
         database.ref().push({
         name: trainName,
         dest: destination,
@@ -74,9 +95,8 @@ $(document).on("click", "#add-train-btn", function () {
 
 database.ref().on("child_added", function (childSnap) {
     displayTrainInfo(childSnap);
+
 });
 
 
 
-// store it in firebase as an array of train objects
-// display it in the top table 
