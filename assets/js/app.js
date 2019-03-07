@@ -14,41 +14,38 @@ var database = firebase.database();
 // Display intial variables on the page in the table
 
 function displayTrainInfo(snapshot) {
-    console.log("displayTrainInfo Function")
-    var tr = $("<tr>");
-    var tdTrain = $("<td>");
-    tdTrain.text(snapshot.val().name);
-    var tdDestination = $("<td>");
-    tdDestination.text(snapshot.val().dest);
-    var tdFrequency = $("<td>");
-    tdFrequency.text(snapshot.val().freq);
-    // these variables need moment.js
-    // -------- MOMENT.JS -------- //
-    // AHHHHH!!!!! //
-
-    var trainFrequency = snapshot.val().freq;
-    console.log("val().freq =" + snapshot.val().freq)
-    var ftt = snapshot.val().ftt;
-    console.log("ftt =" + ftt)
-    var timeFormat = "HH:mm"
-    var fttConverted = moment(ftt, timeFormat);
-    console.log("fttConverted =" + fttConverted);
-    var currentTime = moment();
-    console.log("current time =" +currentTime);
-
-    var diffTime = moment().diff(moment(fttConverted), "minutes");
-    console.log("diffTime = " + diffTime)
-    var tRemainder = diffTime % trainFrequency;
-    console.log("tRemainder =" + tRemainder)
-    var tMinutesTillTrain = trainFrequency - tRemainder;
-    console.log("tMinutesTillTrain =" + tMinutesTillTrain)
-    var nextTrain = currentTime.add(tMinutesTillTrain, "minutes");
-    console.log("nextTrain =" + nextTrain)
-    var tdNextArrival = $("<td>");
-    tdNextArrival.text(nextTrain.format("HH:mm a"));
-    var tdMinAway = $("<td>");
-    tdMinAway.text(tMinutesTillTrain);
+ 
+    var tr                  = $("<tr>");
+    var tdTrain             = $("<td>");
+    var tdDestination       = $("<td>");
+    var tdFrequency         = $("<td>");
+    var tdNextArrival       = $("<td>");
+    var tdMinAway           = $("<td>");    
     
+    var trainFrequency      = snapshot.val().freq;
+    var ftt                 = snapshot.val().ftt;
+    var timeFormat          = "HH:mm"
+    var fttConverted        = moment(ftt, timeFormat);
+    var currentTime         = moment();
+    var diffTime            = moment().diff(moment(fttConverted), "minutes");
+    var tRemainder          = diffTime % trainFrequency;
+    var tMinutesTillTrain   = trainFrequency - tRemainder;
+    var nextTrain           = currentTime.add(tMinutesTillTrain, "minutes");
+    
+    tdTrain                 .text(snapshot.val().name);
+    tdDestination           .text(snapshot.val().dest);
+    tdFrequency             .text(snapshot.val().freq);
+    tdNextArrival           .text(nextTrain.format("HH:mm a"));
+    tdMinAway               .text(tMinutesTillTrain);
+   
+    console.log("val().freq =" + snapshot.val().freq)
+    console.log("ftt =" + ftt)
+    console.log("fttConverted =" + fttConverted);
+    console.log("current time =" + currentTime);
+    console.log("diffTime = " + diffTime)
+    console.log("tRemainder =" + tRemainder)
+    console.log("tMinutesTillTrain =" + tMinutesTillTrain)
+    console.log("nextTrain =" + nextTrain)
 
     tr.append(tdTrain);
     tr.append(tdDestination);
@@ -61,7 +58,7 @@ function displayTrainInfo(snapshot) {
 
 // Listen for the click on the submit button
 $(document).on("click", "#add-train-btn", function () {
-    
+
     // capture the text in the form fields and save it as a variable
 
     var trainName = $("#train-name-input").val().trim();
@@ -85,11 +82,11 @@ $(document).on("click", "#add-train-btn", function () {
         (freqObject && freqObject.value)
     ) {
         database.ref().push({
-        name: trainName,
-        dest: destination,
-        ftt: firstTrainTime,
-        freq: frequency
-    });
+            name: trainName,
+            dest: destination,
+            ftt: firstTrainTime,
+            freq: frequency
+        });
     } else {
         alert("You must have an input in every field!")
     };
