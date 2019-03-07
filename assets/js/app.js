@@ -93,6 +93,8 @@ $(document).on("click", "#add-train-btn", function () {
     } else {
         alert("You must have an input in every field!")
     };
+    document.getElementById("train-input-form").reset();
+
 });
 
 database.ref().on("child_added", function (childSnap) {
