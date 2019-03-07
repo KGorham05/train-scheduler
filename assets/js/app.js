@@ -35,7 +35,8 @@ function displayTrainInfo(snapshot) {
     console.log("fttConverted =" + fttConverted);
     var currentTime = moment();
     console.log("current time =" +currentTime);
-    var diffTime = currentTime.diff(moment(fttConverted));
+
+    var diffTime = moment().diff(moment(fttConverted), "minutes");
     console.log("diffTime = " + diffTime)
     var tRemainder = diffTime % trainFrequency;
     console.log("tRemainder =" + tRemainder)
@@ -60,6 +61,7 @@ function displayTrainInfo(snapshot) {
 
 // Listen for the click on the submit button
 $(document).on("click", "#add-train-btn", function () {
+    
     // capture the text in the form fields and save it as a variable
 
     var trainName = $("#train-name-input").val().trim();
