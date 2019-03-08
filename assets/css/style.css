@@ -1,7 +1,13 @@
 body {
-    background-color: skyblue;
+    background-image: url("../pexels-photo-434415.jpeg");
 }
 
 #train-table-card {
     margin-bottom: 32px;
+}
+
+.jumbotron, .card, tr {
+background-color:black;
+color: #eaeaea;
+border: 2px solid silver;
 }
